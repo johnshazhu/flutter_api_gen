@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      flutter_api_test|api_builder:
+        enabled: true
+        generate_for:
+          include: ['**.api_gen.dart']
+
+builders:
+  api_builder:
+    import: 'package:flutter_api_test/annotation/api_builder.dart'
+    builder_factories: ['apiBuilder']
+    build_extensions: {'.api_gen.dart': ['.api.util.dart']}
+    auto_apply: root_package
+    build_to: source
