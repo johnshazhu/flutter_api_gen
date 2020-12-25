@@ -1,15 +1,26 @@
 targets:
   $default:
     builders:
-      flutter_api_test|api_builder:
+      ivybabay_api|api_builder:
         enabled: true
         generate_for:
-          include: ['**.api_gen.dart']
+          include: ['**.api.dart']
+      ivybabay_api|api_extension_builder:
+        enabled: true
+        generate_for:
+          include: ['**.api.dart']
 
 builders:
   api_builder:
-    import: 'package:flutter_api_test/annotation/api_builder.dart'
+    import: 'package:ivybabay_api/builder/api_builder.dart'
     builder_factories: ['apiBuilder']
-    build_extensions: {'.api_gen.dart': ['.api.util.dart']}
+    build_extensions: {'.api.dart': ['.impl.dart']}
+    runs_before: ['ivybabay_api|api_extension_builder']
+    auto_apply: root_package
+    build_to: source
+  api_extension_builder:
+    import: 'package:ivybabay_api/builder/api_extension_builder.dart'
+    builder_factories: ['apiExtensionBuilder']
+    build_extensions: {'.api.dart': ['.impls.dart']}
     auto_apply: root_package
     build_to: source

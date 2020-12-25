@@ -43,5 +43,8 @@ local.properties
 .packages
 *.lock
 *.g.dart
-*.api.util.dart
+*.impl.dart
+*.impls.dart
+.flutter-plugins
+.flutter-plugins-dependencies
 

@@ -1,10 +1,9 @@
 abstract class BaseResponse<T> {
-  dynamic code;
-  String message;
-  String errMsg;
-  T data;
+  BaseResponse();
 
-  String get errorMessage => errMsg ?? message;
+  dynamic code;
+
+  T data;
 
   bool get isSuccess => '0' == code?.toString();
 

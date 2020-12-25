@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 {{#imports}}
 import '{{{path}}}';
 {{/imports}}
-
 extension {{className}} on {{targetClassName}} {
   {{#functions}}
   {{{functionDefine}}} {
@@ -14,7 +13,7 @@ extension {{className}} on {{targetClassName}} {
     
     {{^withBodyWrapper}}
     {{#params}}
-    if (null != {{paramName}}) {
+    if ({{paramName}} != null) {
       data["{{{paramName}}}"] = {{paramName}};
     }
     {{/params}}
@@ -33,11 +32,9 @@ extension {{className}} on {{targetClassName}} {
       return {{{rspType}}}.fromJson(rsp.data);
       {{/withBodyWrapper}}
     });
-
     return result;
   }
   {{/functions}}
 }
-
 """;
 }
