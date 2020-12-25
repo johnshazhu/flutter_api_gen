@@ -1,4 +1,4 @@
-import 'package:ivybabay_api/api/base/base_response.dart';
+import 'package:ivybaby_api/api/base/base_response.dart';
 
 abstract class IvyBabyResponse<T> extends BaseResponse<T> {
   String bscode;

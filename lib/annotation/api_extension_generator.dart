@@ -1,7 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
-import 'package:ivybabay_api/annotation/api_collect.dart';
-import 'package:ivybabay_api/annotation/api_extension.dart';
+import 'package:ivybaby_api/annotation/api_collect.dart';
+import 'package:ivybaby_api/annotation/api_extension.dart';
 import 'package:mustache/mustache.dart';
 import 'package:source_gen/source_gen.dart';
 

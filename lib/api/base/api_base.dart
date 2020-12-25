@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:ivybabay_api/api/config/api_config.dart';
+import 'package:ivybaby_api/api/config/api_config.dart';
 
 class ApiUtils {
   static const String ACCEPT_HEADER = "application/json,text/plain,*/*";

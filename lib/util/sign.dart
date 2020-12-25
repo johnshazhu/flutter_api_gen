@@ -1,6 +1,6 @@
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
-import 'package:ivybabay_api/api/config/api_config.dart';
+import 'package:ivybaby_api/api/config/api_config.dart';
 
 class Sign {
   static String sign(String deviceNo, String t) {
