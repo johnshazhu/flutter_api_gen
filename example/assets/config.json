@@ -1,0 +1,7 @@
+{
+  "base" : "https://testyxyapi2.drcuiyutao.com",
+  "mallBase" : "https://testmb2cfront.drcuiyutao.com",
+  "tokenUrl" : "/ouser-services/token/thirdLogin",
+  "proxy" : "",
+  "signStr" : ""
+}
