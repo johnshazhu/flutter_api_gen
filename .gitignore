@@ -42,7 +42,6 @@ local.properties
 .idea/
 .packages
 *.lock
-*.g.dart
 *.impl.dart
 *.impls.dart
 .flutter-plugins
