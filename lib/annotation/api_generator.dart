@@ -183,7 +183,7 @@ class SimpleVisitor extends SimpleElementVisitor {
     funcInfo["hasData"] = data != null && data.objectValue != null;
     if (funcInfo["hasData"]) {
       funcInfo["dataType"] = AnnotationUtil.getDataType(data.objectValue);
-      funcInfo["dataValue"] = AnnotationUtil.getDataValue(data.objectValue);
+      funcInfo["dataValue"] = AnnotationUtil.getDataValue(data.objectValue, map);
     } else {
       if ((element.parameters?.length ?? 0) > 0) {
         funcInfo["hasData"] = true;

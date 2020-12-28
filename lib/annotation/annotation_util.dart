@@ -6,13 +6,18 @@ class AnnotationUtil {
   static const String KEEP_NAME_PREFIX = "@C_";
 
   /// 获取 DartObject 数据值字符串。代码格式
-  static String getDataValue(DartObject dartObject) {
+  static String getDataValue(DartObject dartObject, Map<String, dynamic> target) {
     String result = "";
     if (dartObject.type.isDartCoreMap) {
       Map<DartObject, DartObject> map = dartObject.toMapValue();
       result = "{";
       map.forEach((key, value) {
-        result += "\n${getDataValue(key)} : ${getDataValue(value)},";
+        String strKey = getDataValue(key, null);
+        String strVal = getDataValue(value, null);
+        result += "\n$strKey : $strVal,";
+        if (target != null) {
+          target[strKey] = strVal;
+        }
       });
       result += "\n}";
     } else if (dartObject.type.isDartCoreString) {
@@ -24,7 +29,7 @@ class AnnotationUtil {
       List<DartObject> list = dartObject.toListValue();
       result = "[";
       list.forEach((element) {
-        result += "\n${getDataValue(element)},";
+        result += "\n${getDataValue(element, null)},";
       });
       result += "\n]";
     } else if (dartObject.type.isDartCoreInt) {
