@@ -60,7 +60,7 @@ abstract class CmsApi {
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;这种情况下不需要再使用ApiExtension来注解生成文件。<br/>
 &ensp;&ensp;&ensp;&ensp;mergeByBaseUrl：<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;结合注解ApiExtension中的配置使用。<br/>
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;true 表示使用Api注解的方法的实现，会按baseUrl分类，合并在统一的文件中，
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;true 表示使用Api注解的方法的实现，会按baseUrl分类，合并在统一的文件中，<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;文件类名由ApiExtension中配置。<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;target和mergeByBaseUrl都未设置时，表示使用Api注解的方法的实现，<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;生成在一个统一的文件中，不区分baseUrl。<br/>
