@@ -57,16 +57,16 @@ abstract class CmsApi {
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;定义接口的baseUrl<br/>
 &ensp;&ensp;&ensp;&ensp;target：<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;设置时，表示当前注解类下使用Api注解的方法的实现，会生成在一单独文件中，生成类名为target。这种情况下
-        不需要再使用ApiExtension来注解生成文件。<br/>
+&ensp;&ensp;&ensp;&ensp;不需要再使用ApiExtension来注解生成文件。<br/>
 &ensp;&ensp;&ensp;&ensp;mergeByBaseUrl：<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;结合注解ApiExtension中的配置使用。<br/>
-        true 表示使用Api注解的方法的实现，会按baseUrl分类，合并在统一的文件中，文件类名由ApiExtension中配置。<br/>
-    target和mergeByBaseUrl都未设置时，表示使用Api注解的方法的实现，生成在一个统计的文件中，不区分baseUrl。<br/>
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;true 表示使用Api注解的方法的实现，会按baseUrl分类，合并在统一的文件中，文件类名由ApiExtension中配置。<br/>
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;target和mergeByBaseUrl都未设置时，表示使用Api注解的方法的实现，生成在一个统计的文件中，不区分baseUrl。<br/>
 修饰抽象方法时：<br/>
 &ensp;&ensp;&ensp;&ensp;url：<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;定义接口path<br/>
 &ensp;&ensp;&ensp;&ensp;method：<br/>
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;定义请求方式 get/post  <br/>  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;定义请求方式 get/post<br/>  
 &ensp;&ensp;&ensp;&ensp;data：<br/>
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;定义请求数据<br/>
 &ensp;&ensp;&ensp;&ensp;contentType：<br/>
