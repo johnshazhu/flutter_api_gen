@@ -9,6 +9,9 @@ import 'identity_verify.dart';
 //@Api('\${ApiConfig.base}', target: 'BrickApiImpl')
 @Api('\${ApiConfig.base}', mergeByBaseUrl: false)
 abstract class BrickApi {
-  @Api('/api/json/brick/identityAuth')
+  @Api('/api/json/brick/identityAuth', data: {
+    'keyType': 1,
+    'base': '@C_ApiConfig.base'
+  })
   Future<IdentityVerifyRsp> identityAuth(String idCardNo, String name);
 }
