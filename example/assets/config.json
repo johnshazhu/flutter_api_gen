@@ -1,5 +1,6 @@
 {
-  "base" : "https://testyxyapi2.drcuiyutao.com",
+  "base" : "https://www.custom.com",
+  "ivyBase" : "https://testyxyapi2.drcuiyutao.com",
   "mallBase" : "https://testmb2cfront.drcuiyutao.com",
   "tokenUrl" : "/ouser-services/token/thirdLogin",
   "proxy" : "",

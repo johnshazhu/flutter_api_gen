@@ -6,12 +6,12 @@ import 'identity_verify.dart';
 /// import 'package:ivybaby_api/api/base/api_base.dart';
 /// import 'package:ivybaby_api/api/config/api_config.dart';
 /// import 'package:ivybaby_api/api/config/global_data.dart';
-//@Api('\${ApiConfig.base}', target: 'BrickApiImpl')
-@Api('\${ApiConfig.base}', mergeByBaseUrl: false)
+//@Api('\${ApiConfig.ivyBase}', target: 'BrickApiImpl')
+@Api('\${ApiConfig.ivyBase}', mergeByBaseUrl: false)
 abstract class BrickApi {
-  @Api('/api/json/brick/identityAuth', data: {
+  @Api('/yxy-api-gateway/api/json/brick/identityAuth', data: {
     'keyType': 1,
-    'base': '@C_ApiConfig.base'
+    'base': '@C_ApiConfig.ivyBase'
   })
   Future<IdentityVerifyRsp> identityAuth(String idCardNo, String name);
 }

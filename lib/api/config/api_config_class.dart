@@ -7,6 +7,8 @@ class ApiConfigInfo {
 
   String base;
 
+  String ivyBase;
+
   String mallBase;
 
   String tokenUrl;

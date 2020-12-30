@@ -47,3 +47,8 @@ local.properties
 .flutter-plugins
 .flutter-plugins-dependencies
 
+android/
+ios/
+.metadata
+build.gradle
+

@@ -72,7 +72,7 @@ class ApiUtils {
   }
 
   Dio getDioByPath(String path) {
-    if (path != null && path.startsWith(ApiConfig.base)) {
+    if (path != null && (path.startsWith(ApiConfig.base) || path.startsWith(ApiConfig.ivyBase))) {
       return _dioIvyBaby;
     }
 

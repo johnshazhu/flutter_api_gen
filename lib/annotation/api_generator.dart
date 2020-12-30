@@ -150,7 +150,7 @@ class SimpleVisitor extends SimpleElementVisitor {
     }
     funcInfo['url'] = _baseUrl + url;
 
-    funcInfo["withBodyWrapper"] = _baseUrl.contains('ApiConfig.base');
+    funcInfo["withBodyWrapper"] = _baseUrl.contains('ApiConfig.ivyBase');
     ApiGenerator.addDocumentImport(element, _buildStep);
     Map<String, dynamic> map;
     if (funcInfo["withBodyWrapper"]) {
@@ -174,7 +174,7 @@ class SimpleVisitor extends SimpleElementVisitor {
         break;
 
       default:
-        print('unsupportable method : ' + method);
+        print('unsupported method : ' + method);
         return;
     }
     funcInfo['requestName'] = requestName;
@@ -205,7 +205,7 @@ class SimpleVisitor extends SimpleElementVisitor {
     });
     funcInfo["params"] = params;
     if (funcInfo["withBodyWrapper"]) {
-      funcInfo['dataValue'] = {'\"body\"': 'json.encode($map)'};
+      funcInfo['dataValue'] = {'\"body\"': 'GlobalData.updateBody(json.encode($map))'};
     }
     /// 函数参数有默认值的情况，更新函数定义
     if (defaultParams.isNotEmpty) {

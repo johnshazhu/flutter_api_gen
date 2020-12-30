@@ -10,11 +10,13 @@ class ApiConfig {
       if ((value ?? '').isNotEmpty) {
         ApiConfigInfo config = ApiConfigInfo.fromJson(json.decode(value));
         base = config?.base;
+        ivyBase = config?.ivyBase;
         mallBase = config?.mallBase;
         tokenUrl = '$mallBase${config?.tokenUrl}';
         proxy = config?.proxy;
         signStr = config?.signStr;
         print('base : $base\n');
+        print('ivyBase : $ivyBase\n');
         print('mallBase : $mallBase\n');
       }
     });
@@ -29,6 +31,7 @@ class ApiConfig {
   }
 
   static String base = '';
+  static String ivyBase = '';
   static String mallBase = '';
   static String tokenUrl = '';
   static String proxy = '';
