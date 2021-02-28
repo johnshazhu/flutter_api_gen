@@ -91,6 +91,8 @@ class ApiGenerator extends GeneratorForAnnotation<Api> {
       int start = path.indexOf(prefix) + prefix.length;
       int end = path.indexOf(suffix);
       result = 'package:${buildStep.inputId.package}_' + path.substring(start, end) + '/' + path.substring(end + suffix.length);
+    } else if (path.startsWith('/') && path.contains('/lib/')) {
+      result = 'package:' + path.replaceFirst('/', '').replaceFirst('/lib/', '/');
     }
 
     if (!mergeByBaseUrl) {
