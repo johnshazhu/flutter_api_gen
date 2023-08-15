@@ -6,7 +6,7 @@ part 'identity_verify.g.dart';
 class IdentityVerifyRsp extends IvyBabyResponse<IdentityVerifyRspData> {
   IdentityVerifyRsp() : super();
 
-  factory IdentityVerifyRsp.fromJson(Map<String, dynamic> json) => _$IdentityVerifyRspFromJson(json);
+  factory IdentityVerifyRsp.fromJson(Map<String, dynamic>? json) => _$IdentityVerifyRspFromJson(json??{});
 
   Map<String, dynamic> toJson() => _$IdentityVerifyRspToJson(this);
 }
@@ -15,11 +15,11 @@ class IdentityVerifyRsp extends IvyBabyResponse<IdentityVerifyRspData> {
 class IdentityVerifyRspData {
   IdentityVerifyRspData() : super();
 
-  String msg;
+  String? msg;
 
-  bool result;
+  bool? result;
 
-  factory IdentityVerifyRspData.fromJson(Map<String, dynamic> json) => _$IdentityVerifyRspDataFromJson(json);
+  factory IdentityVerifyRspData.fromJson(Map<String, dynamic>? json) => _$IdentityVerifyRspDataFromJson(json??{});
 
   Map<String, dynamic> toJson() => _$IdentityVerifyRspDataToJson(this);
 }

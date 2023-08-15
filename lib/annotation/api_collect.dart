@@ -1,7 +1,7 @@
 class Collector {
-  Map<String, List<Map<String, dynamic>>> _functionsMap;
-  Map<String, List<Map<String, dynamic>>> _importsMap;
-  Map<String, Map<String, bool>> _importMap;
+  late Map<String, List<Map<String, dynamic>>> _functionsMap;
+  late Map<String, List<Map<String, dynamic>>> _importsMap;
+  late Map<String, Map<String, bool>> _importMap;
   Collector._() {
     _functionsMap = Map<String, List<Map<String, dynamic>>>();
     _importsMap = Map<String, List<Map<String, dynamic>>>();

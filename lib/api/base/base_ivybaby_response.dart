@@ -1,13 +1,13 @@
 import 'package:ivybaby_api/api/base/base_response.dart';
 
 abstract class IvyBabyResponse<T> extends BaseResponse<T> {
-  String bscode;
+  String? bscode;
 
-  String msg;
+  String? msg;
 
   dynamic userEnv;
 
-  List<String> routers;
+  List<String>? routers;
 
   @override
   bool get isSuccess => 1 == code && ('1' == bscode || (bscode ?? '').isEmpty);

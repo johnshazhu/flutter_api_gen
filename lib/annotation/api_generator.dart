@@ -1,9 +1,10 @@
+import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/dart/element/visitor.dart';
 import 'package:build/build.dart';
 import 'package:ivybaby_api/annotation/api_collect.dart';
-import 'package:mustache/mustache.dart';
+import 'package:mustache_template/mustache.dart';
 import 'package:source_gen/source_gen.dart';
 
 import 'annotation_util.dart';
@@ -28,7 +29,7 @@ class ApiGenerator extends GeneratorForAnnotation<Api> {
         print('please check annotation url of class : ' + element.name);
         return;
       }
-      mergeByBaseUrl = annotation.peek('mergeByBaseUrl').boolValue;
+      mergeByBaseUrl = annotation.peek('mergeByBaseUrl')!.boolValue;
     }
 
     /// 添加document中的导入包信息，生成目标文件时要用到
@@ -57,16 +58,16 @@ class ApiGenerator extends GeneratorForAnnotation<Api> {
       return content;
     }
     /// 仅搜集注解信息，在extension注解中生成文件
-    return null;
+    return '';
   }
 
   /// 解析注释中的import信息
   /// 简单处理规则->'import '开头，';'结尾的认为是import信息
   static void addDocumentImport(Element element, BuildStep buildStep) {
     if (element.documentationComment != null) {
-      List<String> comments = element.documentationComment.split('\n');
+      List<String> comments = element.documentationComment!.split('\n');
       for (String elem in comments) {
-        String info = elem ?? '';
+        String info = elem;
         String prefix = 'import \'';
         String suffix = '\';';
         if (info.contains(prefix)) {
@@ -104,7 +105,7 @@ class ApiGenerator extends GeneratorForAnnotation<Api> {
       return;
     }
 
-    Map<String, bool> map = Collector.inst.importMap[baseUrl];
+    Map<String, bool>? map = Collector.inst.importMap[baseUrl];
     if (map == null) {
       map = Map<String, bool>();
       Collector.inst.importMap[baseUrl] = map;
@@ -112,9 +113,9 @@ class ApiGenerator extends GeneratorForAnnotation<Api> {
     if (!map.containsKey(result)) {
       map[result] = true;
       print("addImport path[$path]");
-      List<Map<String, dynamic>> urlImports = Collector.inst.importsMap[baseUrl];
+      List<Map<String, dynamic>>? urlImports = Collector.inst.importsMap[baseUrl];
       if (urlImports == null) {
-        urlImports = List<Map<String, dynamic>>();
+        urlImports = <Map<String, dynamic>>[];
         Collector.inst.importsMap[baseUrl] = urlImports;
       }
       urlImports.add({"path": result});
@@ -129,8 +130,9 @@ class SimpleVisitor extends SimpleElementVisitor {
 
   @override
   visitMethodElement(MethodElement element) {
-    ConstantReader reader = ConstantReader(TypeChecker.fromRuntime(Api).firstAnnotationOf(element));
-    if (reader == null) {
+    DartObject? fistElement = TypeChecker.fromRuntime(Api).firstAnnotationOf(element);
+    ConstantReader reader = ConstantReader(fistElement);
+    if (fistElement == null) {
       print('firstAnnotationOf ' + element.name + ' is null');
       return;
     }
@@ -140,7 +142,7 @@ class SimpleVisitor extends SimpleElementVisitor {
 
     funcInfo['functionDefine'] = element.toString().replaceAll('*', '');
 
-    if (element.returnType.isVoid) {
+    if (element.returnType is VoidType) {
       print('please check return type of method : ' + element.name);
       return;
     }
@@ -154,7 +156,7 @@ class SimpleVisitor extends SimpleElementVisitor {
 
     funcInfo["withBodyWrapper"] = _baseUrl.contains('ApiConfig.ivyBase');
     ApiGenerator.addDocumentImport(element, _buildStep);
-    Map<String, dynamic> map;
+    Map<String, dynamic>? map;
     if (funcInfo["withBodyWrapper"]) {
       funcInfo['hasData'] = true;
       funcInfo['dataType'] = 'Map<String, dynamic>';
@@ -182,12 +184,12 @@ class SimpleVisitor extends SimpleElementVisitor {
     funcInfo['requestName'] = requestName;
 
     var data = reader.peek('data');
-    funcInfo["hasData"] = data != null && data.objectValue != null;
+    funcInfo["hasData"] = data != null && !data.objectValue.isNull;
     if (funcInfo["hasData"]) {
-      funcInfo["dataType"] = AnnotationUtil.getDataType(data.objectValue);
+      funcInfo["dataType"] = AnnotationUtil.getDataType(data!.objectValue);
       funcInfo["dataValue"] = AnnotationUtil.getDataValue(data.objectValue, map);
     } else {
-      if ((element.parameters?.length ?? 0) > 0) {
+      if (element.parameters.length > 0) {
         funcInfo["hasData"] = true;
         funcInfo["dataValue"] = "{}";
         funcInfo["dataType"] = "Map<String, dynamic>";
@@ -196,13 +198,13 @@ class SimpleVisitor extends SimpleElementVisitor {
 
     /// 函数参数，收集有默认值的参数
     List<Map<String, String>> params = [];
-    element.parameters?.forEach((parameterElement) {
+    element.parameters.forEach((parameterElement) {
       params.add({"paramName": parameterElement.displayName});
       if (parameterElement.defaultValueCode != null) {
         defaultParams[parameterElement.displayName] = parameterElement.defaultValueCode;
       }
       if (funcInfo["withBodyWrapper"]) {
-        map['\"${parameterElement.displayName}\"'] = parameterElement.displayName;
+        map?['\"${parameterElement.displayName}\"'] = parameterElement.displayName;
       }
     });
     funcInfo["params"] = params;
@@ -241,21 +243,21 @@ class SimpleVisitor extends SimpleElementVisitor {
 
     /// 获取此函数需要的引入的包
     /// 返回值的包
-    ApiGenerator.addImport(_buildStep, returnType.element.librarySource.fullName);
+    ApiGenerator.addImport(_buildStep, returnType.element!.librarySource!.fullName);
 
     /// 返回值为泛型
     if (AnnotationUtil.canHaveGenerics(returnType)) {
       List<DartType> types = AnnotationUtil.getGenericTypes(returnType);
       for (DartType type in types) {
-        ApiGenerator.addImport(_buildStep, type.element.librarySource.fullName);
+        ApiGenerator.addImport(_buildStep, type.element!.librarySource!.fullName);
       }
     }
     if (!ApiGenerator.mergeByBaseUrl) {
       ApiGenerator.functions.add(funcInfo);
     } else {
-      List<Map<String, dynamic>> funcs = Collector.inst.functionsMap[_baseUrl];
+      List<Map<String, dynamic>>? funcs = Collector.inst.functionsMap[_baseUrl];
       if (funcs == null) {
-        funcs = List<Map<String, dynamic>>();
+        funcs = <Map<String, dynamic>>[];
         Collector.inst.functionsMap[_baseUrl] = funcs;
       }
       funcs.add(funcInfo);

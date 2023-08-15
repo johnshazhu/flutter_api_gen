@@ -5,17 +5,17 @@ part 'api_config_class.g.dart';
 class ApiConfigInfo {
   ApiConfigInfo();
 
-  String base;
+  String? base;
 
-  String ivyBase;
+  String? ivyBase;
 
-  String mallBase;
+  String? mallBase;
 
-  String tokenUrl;
+  String? tokenUrl;
 
-  String proxy;
+  String? proxy;
 
-  String signStr;
+  String? signStr;
 
   factory ApiConfigInfo.fromJson(Map<String, dynamic> json) =>
       _$ApiConfigInfoFromJson(json);
