@@ -6,7 +6,7 @@ part 'query_module.g.dart';
 class QueryModuleRsp extends MallResponse<List<QueryModuleRspData>> {
   QueryModuleRsp() : super();
 
-  factory QueryModuleRsp.fromJson(Map<String, dynamic> json) => _$QueryModuleRspFromJson(json);
+  factory QueryModuleRsp.fromJson(Map<String, dynamic>? json) => _$QueryModuleRspFromJson(json ?? {});
 
   Map<String, dynamic> toJson() => _$QueryModuleRspToJson(this);
 }
@@ -15,37 +15,37 @@ class QueryModuleRsp extends MallResponse<List<QueryModuleRspData>> {
 class QueryModuleRspData {
   QueryModuleRspData();
 
-  int promotionId;
+  int? promotionId;
 
   dynamic themeId;
 
-  String themeName;
+  String? themeName;
 
-  String promPlatform;
+  String? promPlatform;
 
-  String joinType;
+  String? joinType;
 
-  int promType;
+  int? promType;
 
-  String userScope;
+  String? userScope;
 
-  int contentType;
+  int? contentType;
 
-  int status;
+  int? status;
 
-  List<String> merchantNameList;
+  List<String>? merchantNameList;
 
-  int startTime;
+  int? startTime;
 
-  int endTime;
+  int? endTime;
 
-  String promotionType;
+  String? promotionType;
 
-  String iconText;
+  String? iconText;
 
-  String iconUrl;
+  String? iconUrl;
 
-  factory QueryModuleRspData.fromJson(Map<String, dynamic> json) => _$QueryModuleRspDataFromJson(json);
+  factory QueryModuleRspData.fromJson(Map<String, dynamic>? json) => _$QueryModuleRspDataFromJson(json ?? {});
 
   Map<String, dynamic> toJson() => _$QueryModuleRspDataToJson(this);
 }

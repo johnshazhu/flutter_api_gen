@@ -2,23 +2,23 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:ivybaby_api/annotation/api_collect.dart';
 import 'package:ivybaby_api/annotation/api_extension.dart';
-import 'package:mustache/mustache.dart';
+import 'package:mustache_template/mustache.dart';
 import 'package:source_gen/source_gen.dart';
 
 import 'api_generator.dart';
 import 'api_util_tpl.dart';
 
 class ApiExtensionGenerator extends GeneratorForAnnotation<ApiExtension> {
-  String _extensionClsName;
-  String _extensionOnClsName;
-  String _key;
+  late String _extensionClsName;
+  late String _extensionOnClsName;
+  late String _key;
 
   @override
   generateForAnnotatedElement(Element element, ConstantReader annotation,
       BuildStep buildStep) {
-    _extensionClsName = annotation.peek('className').stringValue;
-    _extensionOnClsName = annotation.peek('on').stringValue;
-    _key = annotation.peek('key').stringValue;
+    _extensionClsName = annotation.peek('className')!.stringValue;
+    _extensionOnClsName = annotation.peek('on')!.stringValue;
+    _key = annotation.peek('key')!.stringValue;
     if (ApiGenerator.functions.isEmpty && _key.isEmpty) {
       /// 单个注解类生成相应文件，不合并
       return null;

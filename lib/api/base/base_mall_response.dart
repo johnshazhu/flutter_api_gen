@@ -3,11 +3,11 @@ import 'package:ivybaby_api/api/base/base_response.dart';
 abstract class MallResponse<T> extends BaseResponse<T> {
   MallResponse(): super();
 
-  String message;
+  String? message;
 
-  String errMsg;
+  String? errMsg;
 
   dynamic error;
 
-  String getErrorMessage() => errMsg ?? message;
+  String getErrorMessage() => errMsg ?? message ?? '';
 }

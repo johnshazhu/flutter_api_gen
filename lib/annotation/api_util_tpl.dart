@@ -20,17 +20,15 @@ extension {{className}} on {{targetClassName}} {
     {{/withBodyWrapper}}
     
     {{{returnType}}} result = new Future(() async {
-      Response rsp = await {{requestName}}(
+      Response? rsp = await {{requestName}}(
           "{{{url}}}",
           {{#hasData}}{{#httpSendData}}data{{/httpSendData}}{{^httpSendData}}queryParameters{{/httpSendData}}: data,{{/hasData}}
           {{#hasContentType}}contentType: "{{{contentType}}}",{{/hasContentType}});
-      {{#withBodyWrapper}}
-      return {{{rspType}}}.fromJson(json.decode(rsp.data));
-      {{/withBodyWrapper}}
-      
-      {{^withBodyWrapper}}
-      return {{{rspType}}}.fromJson(rsp.data);
-      {{/withBodyWrapper}}
+      if (rsp?.data is String) {
+        return {{{rspType}}}.fromJson(json.decode(rsp?.data));
+      } else {
+        return {{{rspType}}}.fromJson(rsp?.data);
+      }
     });
     return result;
   }

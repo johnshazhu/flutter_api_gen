@@ -3,7 +3,7 @@ abstract class BaseResponse<T> {
 
   dynamic code;
 
-  T data;
+  T? data;
 
   bool get isSuccess => '0' == code?.toString();
 
