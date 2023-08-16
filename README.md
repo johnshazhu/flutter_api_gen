@@ -2,21 +2,18 @@
 pubspec.yaml中添加相关配置信息:<br/>
 dependencies下添加<br/>
 ```
-  ivybaby_api:
-    git:
-      url: 'https://github.com/johnshazhu/flutter_api_gen'
-  
-  json_annotation: ^3.1.1
-  analyzer: ^0.40.6
-  source_gen: ^0.9.8
-  mustache: ^1.1.1
-  dio: ^3.0.9
-  crypto: ^2.0.6
+  ivybaby_api: ^0.1.3
+  json_annotation: ^4.8.1
+  analyzer: ^5.13.0
+  source_gen: ^1.3.2
+  mustache_template: ^2.0.0
+  dio: ^5.3.2
+  crypto: ^3.0.3
 ```
 dev_dependencies下添加<br/>
 ```
-  json_serializable: ^3.5.0
-  build_runner: ^1.10.6
+  json_serializable: ^6.6.2
+  build_runner: ^2.3.3
 ```
 flutter下添加<br/>
 ```
